@@ -7,6 +7,17 @@ build:
     go build -o bin/astria-go
 alias b := build
 
+default_tag := 'local'
+default_platform := 'linux/arm64'
+
+# build docker image for the cli
+build-docker tag=default_tag platform=default_platform:
+    docker buildx build \
+      --platform {{default_platform}} \
+      -f Dockerfile \
+      -t ghcr.io/astriaorg/astria-go:{{tag}} \
+      .
+
 # test go code, minus integration tests
 test:
     go test ./...

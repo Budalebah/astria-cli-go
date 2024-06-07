@@ -43,6 +43,7 @@ func SetLogLevel(cliLogLevel string) {
 func CreateUILog(destDir string) {
 	// create log file for the UI app
 	logPath := filepath.Join(destDir, "astria-go.log")
+	log.Debug("Creating log file for the UI app: ", logPath)
 	appLogFile, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
